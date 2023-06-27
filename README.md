@@ -1,5 +1,15 @@
 [Quotes](./public/index.html)
 
+# Deploying to Github pages
+
+```
+npm run deploy
+```
+
+May be useful: https://stackoverflow.com/questions/63698241/how-to-deploy-react-app-to-github-pages-for-personal-page
+
+============================================
+
 
 # Getting Started with Create React App
 
