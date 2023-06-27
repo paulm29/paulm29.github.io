@@ -1,25 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
+import {useEffect, useState} from "react";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [quote, setQuote] = useState("")
+
+    function randomIntFromInterval(min, max) { // min and max included
+        return Math.floor(Math.random() * (max - min + 1) + min)
+    }
+
+    async function getRandomQuote() {
+        const res = await fetch("./json/quotes.json");
+        const data = await res.json();
+        const randomIndex = randomIntFromInterval(0, data.length-1);
+        setQuote(data[randomIndex].quote)
+    }
+
+    useEffect(() => {
+        getRandomQuote();
+    }, []);
+
+    return (
+        <div className="App">
+            <header className="App-header">
+                Quotes
+            </header>
+            <p>{quote}</p>
+            <button onClick={getRandomQuote}>Display random quote</button>
+        </div>
+    );
 }
 
 export default App;
