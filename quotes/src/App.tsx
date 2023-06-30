@@ -10,7 +10,7 @@ function App() {
     const [quote, setQuote] = useState("")
     const navigate = useNavigate();
 
-    function randomIntFromInterval(min, max) { // min and max included
+    function randomIntFromInterval(min: number, max: number): number { // min and max included
         return Math.floor(Math.random() * (max - min + 1) + min)
     }
 
@@ -23,7 +23,7 @@ function App() {
 
     useEffect(() => {
         getRandomQuote();
-    }, []);
+    }, [getRandomQuote]);
 
     return (
         <>
@@ -35,6 +35,9 @@ function App() {
                 <p>{quote}</p>
                 <button onClick={getRandomQuote}>Display random quote</button>
             </div>
+            {/*<button className="btn" onClick={() => navigate('order-summary')}>*/}
+            {/*    Place Order*/}
+            {/*</button>*/}
             <Routes>
                 <Route path="/" element={<Home/>}/>
                 <Route path="/about" element={<About/>}/>
