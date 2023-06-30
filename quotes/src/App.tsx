@@ -1,20 +1,45 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import Navbar from "./Navbar";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Home from "./Home";
 import About from "./About";
+import NoMatch from "./NoMatch";
 
 function App() {
+    const [quote, setQuote] = useState("")
+    const navigate = useNavigate();
+
+    function randomIntFromInterval(min, max) { // min and max included
+        return Math.floor(Math.random() * (max - min + 1) + min)
+    }
+
+    async function getRandomQuote() {
+        const res = await fetch("./json/quotes.json");
+        const data = await res.json();
+        const randomIndex = randomIntFromInterval(0, data.length-1);
+        setQuote(data[randomIndex].quote)
+    }
+
+    useEffect(() => {
+        getRandomQuote();
+    }, []);
+
     return (
         <>
             <Navbar/>
-            <BrowserRouter basename={window.location.pathname || ''}>
-                <Routes>
-                    <Route path="/" element={<Home/>}/>
-                    <Route path="/about" element={<About/>}/>
-                </Routes>
-            </BrowserRouter>
+            <div className="App">
+                <header className="App-header">
+                    Quotes
+                </header>
+                <p>{quote}</p>
+                <button onClick={getRandomQuote}>Display random quote</button>
+            </div>
+            <Routes>
+                <Route path="/" element={<Home/>}/>
+                <Route path="/about" element={<About/>}/>
+                <Route path="*" element={<NoMatch />} />
+            </Routes>
         </>
     );
 }
