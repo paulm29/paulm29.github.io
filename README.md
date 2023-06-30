@@ -4,11 +4,14 @@ $ npx create-react-app my-app --template typescript
 
 # Deploying to Github pages
 
+npm i -g gh-pages
+
 ```
 npm run deploy
 ```
 
 [View here](http://paulm29.github.io) 
+[Config](https://github.com/paulm29/paulm29.github.io/settings/pages)
 
 May be useful: https://stackoverflow.com/questions/63698241/how-to-deploy-react-app-to-github-pages-for-personal-page
 
