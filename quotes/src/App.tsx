@@ -1,50 +1,78 @@
-import React, { useEffect, useState } from 'react';
+import React, { lazy, useEffect, useState } from 'react';
 import './App.css';
-import Navbar from "./Navbar";
-import { Route, Routes, useNavigate } from "react-router-dom";
-import Home from "./Home";
-import About from "./About";
-import NoMatch from "./NoMatch";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "./store/hooks";
+import { useFetchBreedsQuery } from "./features/dogs/dogs-api-slice";
+import { fetchQuotes, selectStatus } from "./features/quote/quote-slice";
+import { Quote } from "./model/quote";
+
+const ExportQuotes = lazy(() => import('./features/quote/ExportQuotes'))
 
 function App() {
-    const [quote, setQuote] = useState("")
+    const quotes = useAppSelector((state) => state.quote.quotes);
+    const dispatch = useAppDispatch();
+
+    const status = useAppSelector(selectStatus);
+
+    const loaderData = useLoaderData();
+
+    const [numDogs, setNumDogs] = useState(10);
+    const { data = [], isFetching } = useFetchBreedsQuery(numDogs);
+
+    function handleClick() {
+        dispatch(fetchQuotes(10));
+    }
+
+    function getRandomQuoteClicked() {
+        dispatch(fetchQuotes(10));
+    }
+
     const navigate = useNavigate();
+
+    const [quote, setQuote] = useState("")
 
     function randomIntFromInterval(min: number, max: number): number { // min and max included
         return Math.floor(Math.random() * (max - min + 1) + min)
     }
 
-    async function getRandomQuote() {
+    async function fetchRandomQuote() {
         const res = await fetch("./json/quotes.json");
         const data = await res.json();
-        const randomIndex = randomIntFromInterval(0, data.length-1);
+        const randomIndex = randomIntFromInterval(0, data.length - 1);
         setQuote(data[randomIndex].quote)
     }
 
     useEffect(() => {
-        getRandomQuote();
-    }, [getRandomQuote]);
+        // fetchRandomQuote();
+        dispatch(fetchQuotes(10))
+    }, []);
 
     return (
         <>
-            <Navbar/>
             <div className="App">
                 <header className="App-header">
                     Quotes
                 </header>
                 <p>{quote}</p>
-                <button onClick={getRandomQuote}>Display random quote</button>
+                <button onClick={getRandomQuoteClicked}>Display random quote</button>
+
+                {/*<button type="button" onClick={handleClick}>*/}
+                {/*    {status === "loading"*/}
+                {/*        ? "Loading todos..."*/}
+                {/*        : "Load todos"}*/}
+                {/*</button>*/}
+
+                <ul>
+                    {
+                        quotes.map((quote: Quote) =>
+                            <li key={quote.id}>{quote.quote}</li>
+                        )
+                    }
+                </ul>
             </div>
-            {/*<button className="btn" onClick={() => navigate('order-summary')}>*/}
-            {/*    Place Order*/}
-            {/*</button>*/}
-            <Routes>
-                <Route path="/" element={<Home/>}/>
-                <Route path="/about" element={<About/>}/>
-                <Route path="*" element={<NoMatch />} />
-            </Routes>
         </>
     );
+
 }
 
 export default App;

@@ -3,7 +3,13 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import About from "./About";
+import NoMatch from "./NoMatch";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
+import RootLayout from "./RootLayout";
+import QuoteView from "./features/quote/QuoteView";
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -11,7 +17,20 @@ const root = ReactDOM.createRoot(
 root.render(
     <React.StrictMode>
         <BrowserRouter basename={window.location.pathname || ''}>
-            <App/>
+            <Provider store={store}>
+            {/*<Suspense fallback={<p>Loading...</p>}>*/}
+                <Routes>
+                    <Route path="/" element={<RootLayout/>}>
+                        <Route index={true} path="/" element={<App/>} loader={() => {
+                            return { loaderData: "loader data"};
+                        }}/>
+                        <Route path="/quote/:quoteId" element={<QuoteView/>}/>
+                        <Route path="/about" element={<About/>}/>
+                    </Route>
+                    <Route path="*" element={<NoMatch/>} />
+                </Routes>
+            </Provider>
+            {/*</Suspense>*/}
         </BrowserRouter>
     </React.StrictMode>
 );
