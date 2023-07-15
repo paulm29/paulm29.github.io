@@ -1,21 +1,19 @@
-import { ThemeContext, ThemeContextType } from "./context/ThemeContext";
 import Navbar from "./Navbar";
 import { Outlet } from "react-router-dom";
 import React, { useState } from "react";
 import Footer from "./Footer";
+import { ThemeContext, ThemeContextType } from "../common/context/ThemeContext";
 
-const RootLayout = (props: any) => {
+const RootLayout = () => {
     const [theme, setTheme] = useState<ThemeContextType>("light");
 
     return (
         <>
-            {/*<Provider store={store}>*/}
             <ThemeContext.Provider value={theme}>
                 <Navbar/>
-                <Outlet />
+                    <Outlet/>
                 <Footer/>
             </ThemeContext.Provider>
-            {/*</Provider>*/}
         </>
     )
 }

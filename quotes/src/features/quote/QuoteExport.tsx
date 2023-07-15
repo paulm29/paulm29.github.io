@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-const ExportQuotes = () => {
+const QuoteExport = () => {
     const navigate = useNavigate();
 
     return (
@@ -11,4 +11,4 @@ const ExportQuotes = () => {
         </div>
     )
 }
-export default ExportQuotes;
+export default QuoteExport;

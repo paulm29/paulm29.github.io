@@ -1,5 +1,18 @@
 [Quotes](./public/index.html)
 
+[Todo](./TODO.md)
+
+# Versions
+```
+"axios": "^1.4.0",
+"react": "^18.2.0",
+"react-dom": "^18.2.0",
+"react-redux": "^8.1.1",
+"react-router-dom": "^6.14.0",
+"react-scripts": "5.0.1",
+"styled-components": "^6.0.3",
+```
+
 $ npx create-react-app my-app --template typescript
 
 # Deploying to Github pages

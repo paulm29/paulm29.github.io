@@ -3,10 +3,10 @@ import './App.css';
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "./store/hooks";
 import { useFetchBreedsQuery } from "./features/dogs/dogs-api-slice";
-import { fetchQuotes, selectStatus } from "./features/quote/quote-slice";
+import { fetchQuotes, fetchQuotesFromBin, selectStatus } from "./features/quote/quote-slice";
 import { Quote } from "./model/quote";
 
-const ExportQuotes = lazy(() => import('./features/quote/ExportQuotes'))
+const ExportQuotes = lazy(() => import('./features/quote/QuoteExport'))
 
 function App() {
     const quotes = useAppSelector((state) => state.quote.quotes);
@@ -20,11 +20,11 @@ function App() {
     const { data = [], isFetching } = useFetchBreedsQuery(numDogs);
 
     function handleClick() {
-        dispatch(fetchQuotes(10));
+        dispatch(fetchQuotesFromBin(10));
     }
 
     function getRandomQuoteClicked() {
-        dispatch(fetchQuotes(10));
+        dispatch(fetchQuotesFromBin(10));
     }
 
     const navigate = useNavigate();

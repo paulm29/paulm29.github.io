@@ -83,7 +83,6 @@ const quoteSlice = createSlice({
 // const randomIndex = randomIntFromInterval(0, data.length - 1);
 // setQuote(data[randomIndex].quote)
 
-// This type describes the error object structure:
 type FetchTodosError = {
     message: string;
 };
@@ -93,9 +92,7 @@ Quote[],
     number,
 { rejectValue: FetchTodosError }
     >(
-    //action type string
     'quotes/getQuotes',
-    // callback function
     async (limit: number = 10, thunkApi) => {
         // const response = await fetch('./../json/quotes.json');
         //
@@ -111,7 +108,32 @@ Quote[],
         const response = await axios.get('./../json/quotes.json');
         if (response.status !== 200) {
             return thunkApi.rejectWithValue({
-                message: "Failed to fetch todos."
+                message: "Failed to fetch quotes."
+            });
+        }
+
+        return await response.data;
+    })
+
+export const fetchQuotesFromBin = createAsyncThunk<
+    Quote[],
+    number,
+    { rejectValue: FetchTodosError }
+    >(
+    'quotes/getQuotesFromBin',
+    async (limit: number = 10, thunkApi) => {
+        const binId = "64b1ff58b89b1e2299bf1cea";
+        const url = `https://api.jsonbin.io/v3/b/${binId}/latest`;
+        const xMasterKey = "$2b$10$Jeex8bYbcptQg2Eoo7cKpu3Ymc6irBwn/0FRWJw.59t9fo/ZndW7q";
+        const config = {
+            headers:{
+                "X-Master-Key": xMasterKey
+            }
+        };
+        const response = await axios.get(url, config);
+        if (response.status !== 200) {
+            return thunkApi.rejectWithValue({
+                message: "Failed to fetch quotes."
             });
         }
 

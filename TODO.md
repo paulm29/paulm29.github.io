@@ -1,0 +1,4 @@
+- material?
+- next.js
+- vite instead of create-react-app
+- perhaps use react mongo app to get vite and material of the shelf
