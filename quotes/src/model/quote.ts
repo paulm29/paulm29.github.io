@@ -1,7 +1,9 @@
 export interface Quote {
     id: string;
+    author: string | 'unknown';
+    category: string | '_';
     quote: string;
-    category: string;
-    author: string;
-    reference: string;
+    reference?: string;
+    translation?: string;
+    url?: string;
 }

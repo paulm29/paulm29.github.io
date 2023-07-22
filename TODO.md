@@ -1,4 +1,5 @@
 - material?
 - next.js
 - vite instead of create-react-app
+- react-hook-form
 - perhaps use react mongo app to get vite and material of the shelf
