@@ -11,6 +11,7 @@ import RootLayout from "./layout/RootLayout";
 import QuoteView from "./features/quote/QuoteView";
 import ErrorPage from "./common/error/ErrorPage";
 import NoMatch from "./common/error/NoMatch";
+import QuoteNew from "./features/quote/QuoteNew";
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -31,6 +32,7 @@ const router = createBrowserRouter(
                     return { loaderData: "loader data" };
                 }}
             />
+            <Route path='/quote/new' element={<QuoteNew/>}/>
             <Route path="/quote/:quoteId" element={<QuoteView/>}/>
             <Route path="/about" element={<About/>}/>
             <Route path="*" element={<NoMatch/>}/>

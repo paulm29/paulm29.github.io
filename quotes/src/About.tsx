@@ -4,11 +4,13 @@ const About = () => {
     const navigate = useNavigate();
 
     return (
-        <div>
+        <>
+            <p>Wisdomology is a wisdom quote collection.</p>
+
             <button className="btn" onClick={() => navigate(-1)}>
                 Go Back
             </button>
-        </div>
+        </>
     )
 }
 export default About;

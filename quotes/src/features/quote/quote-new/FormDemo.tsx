@@ -1,11 +1,11 @@
 import { Button, Paper, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
-import { FormInputText } from "./quote-new/FormInputText";
-import { FormInputMultiCheckbox } from "./quote-new/FormInputMultiCheckbox";
-import { FormInputDropdown } from "./quote-new/FormInputDropdown";
-import { FormInputDate } from "./quote-new/FormInputDate";
-import { FormInputSlider } from "./quote-new/FormInputSlider";
-import { FormInputRadio } from "./quote-new/FormInputRadio";
+import { FormInputText } from "./FormInputText";
+import { FormInputMultiCheckbox } from "./FormInputMultiCheckbox";
+import { FormInputDropdown } from "./FormInputDropdown";
+import { FormInputDate } from "./FormInputDate";
+import { FormInputSlider } from "./FormInputSlider";
+import { FormInputRadio } from "./FormInputRadio";
 
 interface IFormInput {
   textValue: string;

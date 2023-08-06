@@ -1,5 +1,10 @@
-- material?
+# TODO
+- firebase for saving quotes
+
+# Next project
 - next.js
 - vite instead of create-react-app
-- react-hook-form
-- perhaps use react mongo app to get vite and material of the shelf
+- vercel hosting
+- mongodb
+- dashboard material template
+

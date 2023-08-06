@@ -1,12 +1,11 @@
 import styled from "styled-components";
-import { useContext } from "react";
-import { ThemeContext } from "../common/context/ThemeContext";
+import './Footer.css';
 
-type Version = { id: number, entry: string };
-const versions: Version[] = [{ id: 1, entry: "Initial version" }];
+// type Version = { id: number, entry: string };
+// const versions: Version[] = [{ id: 1, entry: "Initial version" }];
 
 const Footer = () => {
-    const theme = useContext(ThemeContext);
+    // const theme = useContext(ThemeContext);
 
     const Footer = styled.div`
       background-color: white;
