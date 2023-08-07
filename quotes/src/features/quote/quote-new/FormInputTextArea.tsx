@@ -1,17 +1,17 @@
-import { Controller } from "react-hook-form";
-import TextField from "@mui/material/TextField";
-import { FormInputProps } from "./FormInputProps";
+import { Controller } from 'react-hook-form';
+import TextField from '@mui/material/TextField';
+import { FormInputProps } from './FormInputProps';
 
-export const FormInputTextArea = ({ name, control, label }: FormInputProps) => {
+export const FormInputTextArea = ({name, control, label}: FormInputProps) => {
     return (
         <Controller
             name={name}
             control={control}
             render={({
-                         field: { onChange, value },
-                         fieldState: { error },
-                         formState,
-                     }) => (
+                field: {onChange, value},
+                fieldState: {error},
+                formState,
+            }) => (
                 <TextField
                     multiline
                     rows={2}

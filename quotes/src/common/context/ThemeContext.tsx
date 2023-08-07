@@ -1,5 +1,5 @@
-import { createContext } from "react";
+import { createContext } from 'react';
 
-export type ThemeContextType = "light" | "dark";
+export type ThemeContextType = 'light' | 'dark';
 
-export const ThemeContext = createContext<ThemeContextType | null>("light");
+export const ThemeContext = createContext<ThemeContextType | null>('light');

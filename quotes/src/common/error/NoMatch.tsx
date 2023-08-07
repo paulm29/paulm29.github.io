@@ -3,6 +3,6 @@ const NoMatch = () => {
         <div>
 
         </div>
-    )
-}
+    );
+};
 export default NoMatch;

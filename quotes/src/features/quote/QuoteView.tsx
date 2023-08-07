@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams } from 'react-router-dom';
 
 const QuoteView = () => {
 
@@ -10,6 +10,6 @@ const QuoteView = () => {
         <>
             <Link to=".." relative="path">Back</Link>
         </>
-    )
-}
+    );
+};
 export default QuoteView;

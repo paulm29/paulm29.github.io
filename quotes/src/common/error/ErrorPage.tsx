@@ -1,9 +1,9 @@
-import { useRouteError } from "react-router-dom";
+import { useRouteError } from 'react-router-dom';
 
 const ErrorPage = () => {
-    const error:any = useRouteError();
+    const error: any = useRouteError();
 
-    let message = "An error occurred.";
+    let message = 'An error occurred.';
 
     if (error.status === 500) {
 
@@ -13,6 +13,6 @@ const ErrorPage = () => {
         <div>
             {message}
         </div>
-    )
-}
+    );
+};
 export default ErrorPage;

@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 const QuoteExport = () => {
     const navigate = useNavigate();
@@ -9,6 +9,6 @@ const QuoteExport = () => {
                 Go Back
             </button>
         </div>
-    )
-}
+    );
+};
 export default QuoteExport;

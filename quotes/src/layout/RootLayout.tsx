@@ -1,10 +1,10 @@
-import Navbar from "./Navbar";
-import { Outlet } from "react-router-dom";
-import React from "react";
-import Footer from "./Footer";
+import Navbar from './Navbar';
+import { Outlet } from 'react-router-dom';
+import React from 'react';
+import Footer from './Footer';
 import './RootLayout.css';
-import { Container, ThemeProvider } from "@mui/material";
-import theme from "./theme";
+import { Container, ThemeProvider } from '@mui/material';
+import theme from './theme';
 
 const RootLayout = () => {
     // const [theme, setTheme] = useState<ThemeContextType>("light");

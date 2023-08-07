@@ -1,12 +1,12 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Quote } from "../../model/quote";
-import { RootState } from "../../store/store";
-import axios from "axios";
+import { Quote } from '../../model/quote';
+import { RootState } from '../../store/store';
+import axios from 'axios';
 
 interface QuoteState {
     quotes: Quote[];
-    loading: boolean
-    status: "loading" | "idle";
+    loading: boolean;
+    status: 'loading' | 'idle';
 
     // `error` will contain an error message.
     error: string | null;
@@ -16,7 +16,7 @@ const initialState: QuoteState = {
     quotes: [],
     loading: false,
     error: null,
-    status: "idle"
+    status: 'idle'
 };
 
 export const selectStatus = (state: RootState) =>
@@ -27,42 +27,42 @@ const quoteSlice = createSlice({
     initialState,
     reducers: {
         addQuotes(state, action: PayloadAction<Quote>) {
-            state.quotes.push(action.payload)
+            state.quotes.push(action.payload);
         }
     },
     extraReducers: (builder) => {
         // When we send a request,
         // `fetchTodos.pending` is being fired:
         builder.addCase(fetchQuotes.pending, (state) => {
-            console.log("pending");
+            console.log('pending');
             // At that moment,
             // we change status to `loading`
             // and clear all the previous errors:
-            state.status = "loading";
+            state.status = 'loading';
             state.error = null;
         });
 
         // When a server responses with the data,
         // `fetchTodos.fulfilled` is fired:
         builder.addCase(fetchQuotes.fulfilled,
-            (state, { payload }) => {
+            (state, {payload}) => {
                 // We add all the new todos into the state
                 // and change `status` back to `idle`:
-                console.log("payload", payload);
+                console.log('payload', payload);
                 // state.quotes.push(...payload);
                 state.quotes = payload;
-                state.status = "idle";
+                state.status = 'idle';
             });
 
         // When a server responses with an error:
         builder.addCase(fetchQuotes.rejected,
-            (state, { payload }) => {
-                console.log("rejected");
+            (state, {payload}) => {
+                console.log('rejected');
 
                 // We show the error message
                 // and change `status` back to `idle` again.
                 if (payload) state.error = payload.message;
-                state.status = "idle";
+                state.status = 'idle';
             });
 
         // [fetchQuotes.pending]: (state) => {
@@ -88,10 +88,10 @@ type FetchTodosError = {
 };
 
 export const fetchQuotes = createAsyncThunk<
-Quote[],
+    Quote[],
     number,
-{ rejectValue: FetchTodosError }
-    >(
+    { rejectValue: FetchTodosError }
+>(
     'quotes/getQuotes',
     async (limit: number = 10, thunkApi) => {
         // const response = await fetch('./../json/quotes.json');
@@ -108,39 +108,39 @@ Quote[],
         const response = await axios.get('./../json/quotes.json');
         if (response.status !== 200) {
             return thunkApi.rejectWithValue({
-                message: "Failed to fetch quotes."
+                message: 'Failed to fetch quotes.'
             });
         }
 
         return await response.data;
-    })
+    });
 
 export const fetchQuotesFromBin = createAsyncThunk<
     Quote[],
     number,
     { rejectValue: FetchTodosError }
-    >(
+>(
     'quotes/getQuotesFromBin',
     async (limit: number = 10, thunkApi) => {
-        const binId = "64b1ff58b89b1e2299bf1cea";
+        const binId = '64b1ff58b89b1e2299bf1cea';
         const url = `https://api.jsonbin.io/v3/b/${binId}/latest`;
-        const xMasterKey = "$2b$10$Jeex8bYbcptQg2Eoo7cKpu3Ymc6irBwn/0FRWJw.59t9fo/ZndW7q";
+        const xMasterKey = '$2b$10$Jeex8bYbcptQg2Eoo7cKpu3Ymc6irBwn/0FRWJw.59t9fo/ZndW7q';
         const config = {
-            headers:{
-                "X-Master-Key": xMasterKey
+            headers: {
+                'X-Master-Key': xMasterKey
             }
         };
         const response = await axios.get(url, config);
         if (response.status !== 200) {
             return thunkApi.rejectWithValue({
-                message: "Failed to fetch quotes."
+                message: 'Failed to fetch quotes.'
             });
         }
 
         return await response.data;
-    })
+    });
 
-export const { addQuotes } = quoteSlice.actions;
+export const {addQuotes} = quoteSlice.actions;
 export default quoteSlice.reducer;
 
 // export const quoteSlice = createApi({

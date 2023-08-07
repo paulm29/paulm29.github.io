@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import './Footer.css';
 
 // type Version = { id: number, entry: string };
@@ -25,6 +25,6 @@ const Footer = () => {
                 {/*</ul>*/}
             </Footer>
         </>
-    )
-}
+    );
+};
 export default Footer;

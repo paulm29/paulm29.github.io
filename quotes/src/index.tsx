@@ -3,15 +3,15 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
-import About from "./About";
-import { Provider } from "react-redux";
-import { store } from "./store/store";
-import RootLayout from "./layout/RootLayout";
-import QuoteView from "./features/quote/QuoteView";
-import ErrorPage from "./common/error/ErrorPage";
-import NoMatch from "./common/error/NoMatch";
-import QuoteNew from "./features/quote/QuoteNew";
+import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
+import About from './About';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
+import RootLayout from './layout/RootLayout';
+import QuoteView from './features/quote/QuoteView';
+import ErrorPage from './common/error/ErrorPage';
+import NoMatch from './common/error/NoMatch';
+import QuoteNew from './features/quote/QuoteNew';
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -29,16 +29,16 @@ const router = createBrowserRouter(
                     </Suspense>
                 }
                 loader={() => {
-                    return { loaderData: "loader data" };
+                    return {loaderData: 'loader data'};
                 }}
             />
-            <Route path='/quote/new' element={<QuoteNew/>}/>
+            <Route path="/quote/new" element={<QuoteNew/>}/>
             <Route path="/quote/:quoteId" element={<QuoteView/>}/>
             <Route path="/about" element={<About/>}/>
             <Route path="*" element={<NoMatch/>}/>
         </Route>
     )
-)
+);
 
 root.render(
     <React.StrictMode>
