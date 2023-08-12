@@ -1,0 +1,8 @@
+public
+node_modules
+README.md
+dist
+jest-html-reporters-attach
+build
+ci
+coverage

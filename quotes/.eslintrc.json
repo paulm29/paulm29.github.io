@@ -79,3 +79,5 @@
     "react/require-default-props": "off"
   }
 }
+
+//see https://react-v8.holt.courses/lessons/core-react-concepts/jsx
